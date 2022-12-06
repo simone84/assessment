@@ -1,13 +1,21 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Follow the syntax"
+        default: "v1.1"
+        required: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
     - uses: actions/checkout@v3
     - name: Build the Docker image
+      env:
+        dbpassword: ${{ secrets.dbpassword }}
       run: docker build . --file Dockerfile --tag mysql:v1
+      run: docker run --name mysql -e MYSQL_ROOT_PASSWORD=$dbpassword -d mysql:{{ github.event.inputs.tag }}
