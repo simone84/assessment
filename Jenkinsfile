@@ -12,7 +12,7 @@ node {
     //       },    
       stage('Build with Docker') {
           sh '''
-          git clone git@github.com:simone84/assesment.git; cd assesment
+          git clone https://github.com/simone84/assesment.git; cd assesment
           docker build . -t mysql:v1.1
           docker images |grep mysql
           docker run --name mysql -e MYSQL_ROOT_PASSWORD=onetimepsw -d mysql:v1.1
