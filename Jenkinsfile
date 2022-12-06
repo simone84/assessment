@@ -14,6 +14,7 @@ node {
           sh '''
           rm -rf assesment
           git clone https://github.com/simone84/assesment.git; cd assesment
+          docker stop mysql; docker rm mysql
           docker build . -t mysql:v1.1
           docker images |grep mysql
           docker run --name mysql -e MYSQL_ROOT_PASSWORD=onetimepsw -d mysql:v1.1
