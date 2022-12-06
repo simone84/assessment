@@ -17,5 +17,6 @@ jobs:
     - name: Build the Docker image
       env:
         dbpassword: ${{ secrets.dbpassword }}
-      run: docker build . --file Dockerfile --tag mysql:v1
+      run: | 
+      docker build . --file Dockerfile --tag mysql:v1
       run: docker run --name mysql -e MYSQL_ROOT_PASSWORD=$dbpassword -d mysql:{{ github.event.inputs.tag }}
