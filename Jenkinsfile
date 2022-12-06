@@ -12,6 +12,7 @@ node {
     //       },    
       stage('Build with Docker') {
           sh '''
+          rm -rf assesment
           git clone https://github.com/simone84/assesment.git; cd assesment
           docker build . -t mysql:v1.1
           docker images |grep mysql
