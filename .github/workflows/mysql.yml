@@ -22,4 +22,5 @@ jobs:
         docker build . --file Dockerfile -t mysql:${{ inputs.tag }}
         docker run --name mysql -e MYSQL_ROOT_PASSWORD=$dbpassword -d mysql:${{ inputs.tag }}
         dbhost=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql)
-        docker exec -i mysql sh -c 'exec mysql -h $dbhost -u root -p$dbpassword' < script.sql
+        echo $dbhost
+        docker exec -i mysql sh -c exec mysql -h $dbhost -u root -p $dbpassword < script.sql
