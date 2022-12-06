@@ -1,11 +1,13 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+
 jobs:
-  build-mysql:
+  build:
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v3
-  with:
-    ref: main
-    # runs-on: mysql:latest
-    # steps:
-    #   - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag mysql:v1
