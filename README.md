@@ -1,4 +1,4 @@
-# AssesmenT
+# Tech Test
 
 * Build a mysql instance with a cutomised database with 2 tables
 
