@@ -25,11 +25,11 @@ What the pipeline does:
 - you can check eventual vulnerabilities and vendor fix (if jfrog) >>> check the screnshoot below.
 ```
 
-![alt text](https://github.com/simone84/assesment/blob/main/screnshot/xrayscan1.png?raw=true)
+![alt text](https://github.com/simone84/assesment/blob/main/screenshot/xrayscan1.png?raw=true)
 
-![alt text](https://github.com/simone84/assesment/blob/main/screnshot/xrayscan2.png?raw=true)
+![alt text](https://github.com/simone84/assesment/blob/main/screenshot/xrayscan2.png?raw=true)
 
-![alt text](https://github.com/simone84/assesment/blob/main/screnshot/xrayvulnerabilities.png?raw=true)
+![alt text](https://github.com/simone84/assesment/blob/main/screenshot/xrayvulnerabilities.png?raw=true)
 
 * Mandatory Customization (env variables):
 
@@ -48,7 +48,7 @@ What the pipeline does:
 | branch    | main    |
 | tag       | v1.1    |
 
-![alt text](https://github.com/simone84/assesment/blob/main/screnshot/workflow1.png?raw=true)
+![alt text](https://github.com/simone84/assesment/blob/main/screenshot/workflow1.png?raw=true)
 
 * GitHub Action gives the most flexible, fast and low cost solution. The build doesn't take end to end more than half minute:
 
