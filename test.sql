@@ -1,3 +1,5 @@
+use cdsolutions;
+
 SELECT * from Companies;
 
 SELECT * from Assets;
