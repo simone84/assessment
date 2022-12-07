@@ -18,10 +18,9 @@ jobs:
       env:
         dbpassword: ${{ secrets.dbpassword }}
       run: |
-        # sudo apt update -y
         docker build . --file Dockerfile -t mysql:${{ inputs.tag }}
-        docker run --name mysql -e MYSQL_ROOT_PASSWORD=33_dFgerg7YW -d mysql:${{ inputs.tag }}
+        docker run --name mysql -e MYSQL_ROOT_PASSWORD=${{ secrets.dbpassword }} -d mysql:${{ inputs.tag }}
         dbhost=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql)
         sleep 15
         echo $dbhost
-        docker exec -i mysql sh -c "exec mysql -u root -p33_dFgerg7YW" < script.sql
+        docker exec -i mysql sh -c "exec mysql -u root -p${{ secrets.dbpassword }}" < script.sql
