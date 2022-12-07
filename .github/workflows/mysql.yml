@@ -26,6 +26,6 @@ jobs:
         echo $dbhost
         docker exec -i mysql sh -c "exec mysql -u root -p${{ secrets.dbpassword }}" < script.sql
         docker exec -i mysql sh -c "exec mysql -u root -p${{ secrets.dbpassword }}" < test.sql
-        echo $TOKEN |docker login -usimone84.an@gmail.com simone84.jfrog.io --password-stdin
+        echo $token |docker login -usimone84.an@gmail.com simone84.jfrog.io --password-stdin
         docker tag mysql:${{ inputs.tag }} simone84.jfrog.io/img/mysql:${{ inputs.tag }}
         docker push simone84.jfrog.io/img/mysql:${{ inputs.tag }}
