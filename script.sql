@@ -15,11 +15,16 @@ CREATE TABLE Assets (
 );
 
 INSERT INTO Companies (CNAME, EMAIL)
-VALUES ("google", "google@gmail.com");
+VALUES ("google", "admin@gmail.com");
+
+INSERT INTO Companies (CNAME, EMAIL)
+VALUES ("facebook", "admin@facebook.com");
 
 INSERT INTO Assets (ANAME, COMPANY, COST)
 VALUES ("chrome", "google", 1000000);
 
-SELECT Companies.ID, Companies.CNAME, Assets.ANAME
-FROM Companies
-INNER JOIN Assets ON Companies.CNAME=Assets.COMPANY;
+INSERT INTO Assets (ANAME, COMPANY, COST)
+VALUES ("youtube", "google", 5000000);
+
+INSERT INTO Assets (ANAME, COMPANY, COST)
+VALUES ("gmail", "google", 4000000);
