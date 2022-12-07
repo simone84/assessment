@@ -14,9 +14,10 @@ jobs:
     steps:
 
     - uses: actions/checkout@v3
-    - name: Build the Docker image
+    - name: Build and push the Docker image
       env:
         dbpassword: ${{ secrets.dbpassword }}
+        token: ${{ secrets.jfrogtoken }}
       run: |
         docker build . --file Dockerfile -t mysql:${{ inputs.tag }}
         docker run --name mysql -e MYSQL_ROOT_PASSWORD=${{ secrets.dbpassword }} -d mysql:${{ inputs.tag }}
@@ -25,3 +26,6 @@ jobs:
         echo $dbhost
         docker exec -i mysql sh -c "exec mysql -u root -p${{ secrets.dbpassword }}" < script.sql
         docker exec -i mysql sh -c "exec mysql -u root -p${{ secrets.dbpassword }}" < test.sql
+        echo $TOKEN |docker login -usimone84.an@gmail.com simone84.jfrog.io --password-stdin
+        docker tag mysql:${{ inputs.tag }} simone84.jfrog.io/img/mysql:${{ inputs.tag }}
+        docker push simone84.jfrog.io/img/mysql:${{ inputs.tag }}
