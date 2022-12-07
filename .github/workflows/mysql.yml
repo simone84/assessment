@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Follow the syntax"
+        description: "Tag the image"
         default: v1.1
         required: true
 
@@ -22,6 +22,7 @@ jobs:
         registry: ${{ secrets.registry }}
         repo: "img"
       run: |
+        echo "########## BUILD LOCALLY ##########"  
         docker build . --file Dockerfile -t mysql:${{ inputs.tag }}
         docker run --name mysql -e MYSQL_ROOT_PASSWORD=${{ secrets.dbpassword }} -d mysql:${{ inputs.tag }}
         # dbhost=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql)
@@ -29,6 +30,7 @@ jobs:
         sleep 15
         docker exec -i mysql sh -c "exec mysql -u root -p${{ secrets.dbpassword }}" < script.sql
         docker exec -i mysql sh -c "exec mysql -u root -p${{ secrets.dbpassword }}" < test.sql
+        echo "########## PUSH TO ARTIFACTORY ##########"
         echo $token |docker login -u${{ secrets.user }} ${{ secrets.registry }} --password-stdin
         docker tag mysql:${{ inputs.tag }} ${{ secrets.registry }}/$repo/mysql:${{ inputs.tag }}
         docker push ${{ secrets.registry }}/$repo/mysql:${{ inputs.tag }}
